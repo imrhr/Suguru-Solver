@@ -1,7 +1,10 @@
-module Backtracking (Timeline (Null, Elem), newTL, goback, addelement) where
+module Backtracking (Timeline (Null, Elem), newTL, goback, addelement, Lista, Matriz) where
 
 data Timeline = Null | Elem Timeline Matriz Int (Int, Int)
                 deriving (Eq, Ord, Read, Show)
+
+type Lista = [Int]
+type Matriz = [Lista]
 
 --Cria ponto de partida de nova Timeline
 newTL :: Matriz -> Int -> (Int, Int) -> Timeline
