@@ -2,6 +2,7 @@ module Main (main) where
  
 import Suguro
 import Backtracking
+import Verificador
 
 main = do
     let mp = [[4,0,0,0,0,0],
