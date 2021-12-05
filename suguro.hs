@@ -43,8 +43,6 @@ linha m x y | (x == 0) = ((m!!x)!!y) /= ((m!!(x + 1))!!y)
 comparaRedor :: Matriz -> Int -> Int -> Bool
 comparaRedor m x y = ((linha m x y && coluna m x y) && diagonal m x y)
 
---limite :: Matriz -> Matriz -> Int -> Int -> Bool
-
 --Contador para o tamanho da área
 counter :: Lista -> Int -> Int
 counter [] _ = 0
@@ -77,4 +75,4 @@ main = do
               [5,5,6,6,6,4],
               [5,7,7,6,8,4],
               [5,8,8,8,8,4]]
-    print(swap (mp!!0) 5 1)
+    print()
