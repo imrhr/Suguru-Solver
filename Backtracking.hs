@@ -1,4 +1,4 @@
-module Backtracking (Timeline (Null, Elem), newTL, goback, addelement, Lista, Matriz) where
+module Backtracking (Timeline (Null, Elem), newTL, goback, addelement, returnMatrix, Lista, Matriz) where
 
 type Lista = [Int]
 type Matriz = [Lista]
@@ -11,7 +11,7 @@ newTL mP mA = (Elem Null mP mA 1 (0, 0))
 
 --Retorna ao elemento anterior
 goback :: Timeline -> Timeline
-goback (Elem ant _ _ _ _) = ant
+goback (Elem (Elem a mP mA v tup) _ _ _ _) = (Elem a mP mA (v + 1) tup)
 goback Null = Null
 
 --Adiciona novo elemento a Timeline
