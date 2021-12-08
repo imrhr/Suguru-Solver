@@ -10,11 +10,11 @@ compMatrix (_:b) = 1 + (compMatrix b)
 --Procura elementos iguais na mesma área
 comparaArea :: Matriz -> Matriz -> Int -> Int -> Int -> Int -> Bool
 comparaArea mP mA x y a v | ((((((mA!!x)!!y) == a) && (((mP!!x)!!y) /= v)) && (y == ((compMatrix mP) - 1))) && (x == ((compMatrix mP) - 1))) = True
-                          | ((((((mA!!x)!!y) == a) && (((mP!!x)!!y) /= v))) && (y == ((compMatrix mP) - 1))) = (True && comparaArea mP mA (x + 1) 0 a v)
-                          | (((((mA!!x)!!y) == a) && (((mP!!x)!!y) /= v))) = (True && comparaArea mP mA x (y + 1) a v)
+                          | ((((((mA!!x)!!y) == a) && (((mP!!x)!!y) /= v))) && (y == ((compMatrix mP) - 1))) = (comparaArea mP mA (x + 1) 0 a v)
+                          | (((((mA!!x)!!y) == a) && (((mP!!x)!!y) /= v))) = (comparaArea mP mA x (y + 1) a v)
                           | (((((mA!!x)!!y) /= a) && (y == ((compMatrix mP) - 1))) && (x == ((compMatrix mP) - 1))) = True
-                          | ((((mA!!x)!!y) /= a) && (y == ((compMatrix mP) - 1))) = (True && comparaArea mP mA (x + 1) 0 a v)
-                          | (((mA!!x)!!y) /= a) = (True && comparaArea mP mA x (y + 1) a v)
+                          | ((((mA!!x)!!y) /= a) && (y == ((compMatrix mP) - 1))) = (comparaArea mP mA (x + 1) 0 a v)
+                          | (((mA!!x)!!y) /= a) = (comparaArea mP mA x (y + 1) a v)
                           | otherwise = False
 
 --Procura elementos iguais na diagonal
