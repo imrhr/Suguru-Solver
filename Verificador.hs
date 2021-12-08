@@ -20,29 +20,29 @@ comparaArea mP mA x y a v | ((((((mA!!x)!!y) == a) && (((mP!!x)!!y) /= v)) && (y
 --Procura elementos iguais na diagonal
 diagonal :: Matriz -> Int -> Int -> Bool
 diagonal m x y | ((x == 0) && (y == 0)) = (((m!!x)!!y) /= ((m!!(x + 1))!!(y + 1)))
-               | ((x == 0) && (y /= 0)) = ((((m!!x)!!y) /= ((m!!(x + 1))!!(y + 1))) && (((m!!x)!!y) /= ((m!!(x + 1))!!(y - 1))))
-               | ((x /= 0) && (y == 0)) = ((((m!!x)!!y) /= ((m!!(x + 1))!!(y + 1))) && (((m!!x)!!y) /= ((m!!(x - 1))!!(y + 1))))
+               | ((x == 0) && (y > 0)) = ((((m!!x)!!y) /= ((m!!(x + 1))!!(y + 1))) && (((m!!x)!!y) /= ((m!!(x + 1))!!(y - 1))))
+               | ((x > 0) && (y == 0)) = ((((m!!x)!!y) /= ((m!!(x + 1))!!(y + 1))) && (((m!!x)!!y) /= ((m!!(x - 1))!!(y + 1))))
                | ((x == ((compMatrix m) - 1)) && (y == ((compMatrix m) - 1))) = (((m!!x)!!y) /= ((m!!(x - 1))!!(y - 1)))
-               | ((x == ((compMatrix m) - 1)) && (y /= ((compMatrix m) - 1))) = ((((m!!x)!!y) /= ((m!!(x - 1))!!(y + 1))) && (((m!!x)!!y) /= ((m!!(x - 1))!!(y - 1))))
-               | ((x /= ((compMatrix m) - 1)) && (y == ((compMatrix m) - 1))) = ((((m!!x)!!y) /= ((m!!(x - 1))!!(y - 1))) && (((m!!x)!!y) /= ((m!!(x + 1))!!(y - 1))))
+               | ((x == ((compMatrix m) - 1)) && (y < ((compMatrix m) - 1))) = ((((m!!x)!!y) /= ((m!!(x - 1))!!(y + 1))) && (((m!!x)!!y) /= ((m!!(x - 1))!!(y - 1))))
+               | ((x < ((compMatrix m) - 1)) && (y == ((compMatrix m) - 1))) = ((((m!!x)!!y) /= ((m!!(x - 1))!!(y - 1))) && (((m!!x)!!y) /= ((m!!(x + 1))!!(y - 1))))
                | otherwise = (((((m!!x)!!y) /= ((m!!(x + 1))!!(y + 1))) && (((m!!x)!!y) /= ((m!!(x - 1))!!(y - 1)))) && ((((m!!x)!!y) /= ((m!!(x - 1))!!(y + 1))) &&
                              (((m!!x)!!y) /= ((m!!(x + 1))!!(y - 1)))))
 
 --Procura elementos iguais na coluna
 coluna :: Matriz -> Int -> Int -> Bool
-coluna m x y | (y == 0) = ((m!!x)!!y) /= ((m!!x)!!(y + 1))
+coluna m x y | (y == 0) = (((m!!x)!!y) /= ((m!!x)!!(y + 1)))
              | (y == ((compMatrix m) - 1)) = (((m!!x)!!y) /= ((m!!x)!!(y - 1)))
              | otherwise = ((((m!!x)!!y) /= ((m!!x)!!(y +  1))) && (((m!!x)!!y) /= ((m!!x)!!(y - 1))))
 
 --Procura elementos iguais na linha
 linha :: Matriz -> Int -> Int -> Bool
-linha m x y | (x == 0) = ((m!!x)!!y) /= ((m!!(x + 1))!!y)
-            | (x == ((compMatrix m) - 1)) = ((m!!x)!!y) /= ((m!!(x - 1))!!y)
-            | otherwise = ((((m!!x)!!y) /= ((m!!(x + 1))!!y)) && (((m!!x)!!y) /= ((m!!(x - 1))!!y)))
+linha m x y | (x == 0) = (((m!!x)!!y) /= ((m!!(x + 1))!!y))
+            | (x == ((compMatrix m) - 1)) = (((m!!x)!!y) /= ((m!!(x - 1))!!y))
+            | otherwise = ((((m!!x)!!y) /= (((m!!(x + 1))!!y) && (((m!!x)!!y) /= ((m!!(x - 1))!!y)))
 
 --Procura elementos iguais ao redor do elemento
 comparaRedor :: Matriz -> Int -> Int -> Bool
 comparaRedor m x y = ((linha m x y && coluna m x y) && diagonal m x y)
 
 verify :: Matriz -> Matriz -> Int -> (Int, Int) -> Bool
-verify mP mA v (x, y) = ((comparaRedor mP x y) && (comparaArea mP mA x y v ((mA!!x)!!y)))
+verify mP mA v (x, y) = ((comparaRedor mP x y) && (comparaArea mP mA 0 0 v ((mA!!x)!!y)))
