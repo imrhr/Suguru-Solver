@@ -20,6 +20,8 @@ comparaArea mP mA x y a v | ((((((mA!!x)!!y) == a) && (((mP!!x)!!y) /= v)) && (y
 --Procura elementos iguais na diagonal
 diagonal :: Matriz -> Int -> Int -> Bool
 diagonal m x y | ((x == 0) && (y == 0)) = (((m!!x)!!y) /= ((m!!(x + 1))!!(y + 1)))
+               | ((x == 0) && (y == ((compMatrix m) - 1))) = (((m!!x)!!y) /= ((m!!(x + 1))!!(y - 1)))
+               | ((x == ((compMatrix m) - 1)) && (y == 0)) = (((m!!x)!!y) /= ((m!!(x - 1))!!(y + 1)))
                | ((x == 0) && (y > 0)) = ((((m!!x)!!y) /= ((m!!(x + 1))!!(y + 1))) && (((m!!x)!!y) /= ((m!!(x + 1))!!(y - 1))))
                | ((x > 0) && (y == 0)) = ((((m!!x)!!y) /= ((m!!(x + 1))!!(y + 1))) && (((m!!x)!!y) /= ((m!!(x - 1))!!(y + 1))))
                | ((x == ((compMatrix m) - 1)) && (y == ((compMatrix m) - 1))) = (((m!!x)!!y) /= ((m!!(x - 1))!!(y - 1)))
