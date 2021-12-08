@@ -1,10 +1,10 @@
-module Backtracking (Timeline(Teste, AddElement), espacoembranco, geraResultado, backtrack) where
+module Backtracking (Timeline(Teste), espacoembranco, geraResultado, backtrack) where
 
 import ManipulaMatrix
 import Verificador
 import Area
 
-data Timeline = Teste Int (Int, Int) Matriz Matriz Lista | AddElement Int
+data Timeline = Teste Int (Int, Int) Matriz Matriz Lista
 
 espacoembranco :: Matriz -> (Int, Int) -> (Int, Int)
 espacoembranco m (x, y) | ((x == 0) && (y <= 0)) = (-1, -1)
@@ -22,12 +22,22 @@ geraResultado mp (a:b) (x,y) | ((y == ((compMatrix mp) - 1)) && (((mp!!x)!!y) ==
 
 backtrack :: Timeline -> Maybe Matriz
 backtrack (Teste v pos mp ma s) = do
-    if (((((fst pos) == ((compMatrix mp) - 1)) && ((snd pos) == (compMatrix mp))) || ((fst pos) < 0)) || ((snd pos) < 0)) then
-        Just (reverse s)
-        else if ((mp!!(fst pos))!!(snd pos)) /= 0 then (
-            if ((snd pos) == ((compMatrix mp) - 1)) then
-                backtrack (Teste 1 (((fst pos) + 1), 0) mp ms)
-            else backtrack (Teste 1 ((fst pos), ((snd pos) + 1)) mp ms)
-            )
-        else if (v > tamArea ma ((ma!!(fst pos))!!(snd pos))) then
-                backtrack (Teste ((head s) + 1) (espacoembranco mp pos) (tail s))
+  if (((((fst pos) == ((compMatrix mp) - 1)) && ((snd pos) == (compMatrix mp))) || ((fst pos) < 0)) || ((snd pos) < 0)) then
+    Just (geraResultado mp (reverse s) (0, 0))
+  else
+    if ((mp!!(fst pos))!!(snd pos)) /= 0 then
+      if ((snd pos) == ((compMatrix mp) - 1)) then
+        backtrack (Teste 1 (((fst pos) + 1), 0) mp ma s)
+      else
+        backtrack (Teste 1 ((fst pos), ((snd pos) + 1)) mp ma s)
+    else
+      if (v > (tamArea ma ((ma!!(fst pos))!!(snd pos)))) then
+        backtrack (Teste ((head s) + 1) (espacoembranco mp pos) mp ma (tail s))
+      else
+        if (verify (geraResultado mp s pos) ma v pos) then
+          if ((snd pos) == ((compMatrix mp) - 1)) then
+            backtrack (Teste 1 (((fst pos) + 1), 0) mp ma (v:s))
+          else
+            backtrack (Teste 1 ((fst pos), ((snd pos) + 1)) mp ma (v:s))
+        else
+          backtrack (Teste (v + 1) pos mp ma s)

@@ -15,5 +15,4 @@ main = do
               [5,5,6,6,6,4],
               [5,7,7,6,8,4],
               [5,8,8,8,8,4]]
-    print(espacoembranco mp (4, 5))
-    print(geraResultado mp [1..29] (0, 0))
+    print(backtrack (Teste 1 (0, 0) mp ma []))
