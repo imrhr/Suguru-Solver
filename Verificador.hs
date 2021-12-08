@@ -38,7 +38,7 @@ coluna m x y | (y == 0) = (((m!!x)!!y) /= ((m!!x)!!(y + 1)))
 linha :: Matriz -> Int -> Int -> Bool
 linha m x y | (x == 0) = (((m!!x)!!y) /= ((m!!(x + 1))!!y))
             | (x == ((compMatrix m) - 1)) = (((m!!x)!!y) /= ((m!!(x - 1))!!y))
-            | otherwise = (((m!!x)!!y) /= (((m!!(x + 1))!!y) && (((m!!x)!!y) /= ((m!!(x - 1))!!y))))
+            | otherwise = ((((m!!x)!!y) /= ((m!!(x + 1))!!y)) && (((m!!x)!!y) /= ((m!!(x - 1))!!y)))
 
 --Procura elementos iguais ao redor do elemento
 comparaRedor :: Matriz -> Int -> Int -> Bool
