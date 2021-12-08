@@ -1,9 +1,8 @@
-module Area (Lista, Matriz, counter, tamArea) where
+module Area (counter, tamArea) where
 
-type Lista = [Int]
-type Matriz = [Lista]
+import ManipulaMatrix (Lista, Matriz)
 
---Contador para o tamanho da área
+--Contador para o tamArea
 counter :: Lista -> Int -> Int
 counter [] _ = 0
 counter (a:b) x | (x == a) = 1 + counter b x

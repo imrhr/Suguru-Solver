@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Solver
+import Backtracking
 
 main = do
     let mp = [[4,0,0,0,0,0],
@@ -15,4 +15,5 @@ main = do
               [5,5,6,6,6,4],
               [5,7,7,6,8,4],
               [5,8,8,8,8,4]]
-    print(iniciar mp ma)
+    print(espacoembranco mp (4, 5))
+    print(geraResultado mp [1..29] (0, 0))

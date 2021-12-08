@@ -1,7 +1,6 @@
-module Verificador (Lista, Matriz, compMatrix,comparaArea, diagonal, linha, coluna, comparaRedor, verify) where
+module Verificador (compMatrix,comparaArea, diagonal, linha, coluna, comparaRedor, verify) where
 
-type Lista = [Int]
-type Matriz = [Lista]
+import ManipulaMatrix (Lista, Matriz)
 
 --Tamanho da Matriz
 compMatrix :: Matriz -> Int
