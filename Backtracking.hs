@@ -27,28 +27,31 @@ geraResultado mp (a:b) (x,y) | ((y == ((compMatrix mp) - 1)) && (((mp!!x)!!y) ==
 
 backtrack :: Timeline -> Maybe Matriz
 backtrack (Teste v pos mp ma s) = do
-  if (((((fst pos) > ((compMatrix mp) - 1)) && ((snd pos) > ((compMatrix mp)-1))) || ((fst pos) < 0)) || ((snd pos) < 0)) then
-    Just (geraResultado mp (reverse s) (0, 0))
+  if (((fst pos) < 0) || ((snd pos) < 0)) then
+    Nothing
   else
-    if ( ((mp!!(fst pos))!!(snd pos)) /= 0) then
-      if (((snd pos)+1) < (compMatrix mp)) then
-        backtrack (Teste 1 ((fst pos), ((snd pos)+1) ) mp ma s)
-      else
-          if (((fst pos)+1) >= (compMatrix mp)) then
-              backtrack (Teste 1 (((fst pos)+1), ((snd pos)+1) ) mp ma s)
-          else
-              backtrack (Teste 1 (((fst pos)+1), 0) mp ma s)
+    if ((((fst pos) > ((compMatrix mp) - 1)) && ((snd pos) > ((compMatrix mp)-1)))) then
+      Just (geraResultado mp (reverse s) (0, 0))
     else
-      if (v > (tamArea ma ((ma!!(fst pos))!!(snd pos)))) then
-        backtrack (Teste ((head s) + 1) (espacoembranco mp pos) mp ma (tail s))
-      else
-        if (verify (geraResultado mp (reverse s) (0,0)) ma v pos) then
-            if (((snd pos)+1) < (compMatrix mp)) then
-                backtrack (Teste 1 ((fst pos), ((snd pos)+1) ) mp ma (v:s))
-            else
-                if (((fst pos)+1) >= (compMatrix mp)) then
-                    backtrack (Teste 1 (((fst pos)+1), ((snd pos)+1) ) mp ma (v:s))
-                else
-                    backtrack (Teste 1 (((fst pos)+1), 0) mp ma (v:s))
+      if ( ((mp!!(fst pos))!!(snd pos)) /= 0) then
+        if (((snd pos)+1) < (compMatrix mp)) then
+          backtrack (Teste 1 ((fst pos), ((snd pos)+1) ) mp ma s)
         else
-          backtrack (Teste (v + 1) pos mp ma s)
+          if (((fst pos)+1) >= (compMatrix mp)) then
+            backtrack (Teste 1 (((fst pos)+1), ((snd pos)+1) ) mp ma s)
+          else
+            backtrack (Teste 1 (((fst pos)+1), 0) mp ma s)
+      else
+        if (v > (tamArea ma ((ma!!(fst pos))!!(snd pos)))) then
+          backtrack (Teste ((head s) + 1) (espacoembranco mp pos) mp ma (tail s))
+        else
+          if (verify (geraResultado mp (reverse s) (0,0)) ma v pos) then
+            if (((snd pos)+1) < (compMatrix mp)) then
+              backtrack (Teste 1 ((fst pos), ((snd pos)+1) ) mp ma (v:s))
+            else
+              if (((fst pos)+1) >= (compMatrix mp)) then
+                backtrack (Teste 1 (((fst pos)+1), ((snd pos)+1) ) mp ma (v:s))
+              else
+                backtrack (Teste 1 (((fst pos)+1), 0) mp ma (v:s))
+          else
+            backtrack (Teste (v + 1) pos mp ma s)
