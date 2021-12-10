@@ -7,10 +7,15 @@ import Area
 data Timeline = Teste Int (Int, Int) Matriz Matriz Lista
 
 espacoembranco :: Matriz -> (Int, Int) -> (Int, Int)
-espacoembranco m (x, y) | ((x <= 0) && (y <= 0)) = (-1, -1)
-                        | ((y == 0) && (((m!!(x - 1))!!((compMatrix m) - 1)) == 0)) = ((x - 1), ((compMatrix m) - 1))
-                        | (((m!!x)!!(y - 1)) == 0) = (x, (y - 1))
-                        | ((y == 0) && (((m!!(x - 1))!!((compMatrix m) - 1)) /= 0)) = espacoembranco m ((x - 1), ((compMatrix m) - 1))
+espacoembranco m (0, 0) = (-1, -1)
+
+espacoembranco m (x, 0) | (((m!!(x - 1))!!((compMatrix m) - 1)) == 0) = ((x - 1), ((compMatrix m) - 1))
+                        | otherwise = espacoembranco m ((x - 1), ((compMatrix m) - 1))
+
+espacoembranco m (0, y) | (((m!!0)!!(y - 1)) == 0) = (0, (y - 1))
+                        | otherwise = espacoembranco m (0, (y - 1))
+
+espacoembranco m (x, y) | (((m!!x)!!(y - 1)) == 0) = (x, (y - 1))
                         | otherwise = espacoembranco m (x, (y - 1))
 
 geraResultado :: Matriz -> Lista -> (Int, Int) -> Matriz
