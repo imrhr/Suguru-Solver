@@ -41,7 +41,9 @@ geraResultado mp (a:b) (x,y) | ((y == ((compMatrix mp) - 1)) && (((mp!!x)!!y) ==
 Algoritmo de backtracking, faz uma sequência de testes que buscam encontrar os
 valores corretos de cada espaço em branco e adiciona-los a uma pilha solução,
 faz tentativa e erro em cada espaço em branco, se encontra um espaço que não pode
-ser preenchido por nenhum valor, altera o valor da posição anterior e tenta de novo
+ser preenchido por nenhum valor, o resultado no topo da pilha solução é desempilhado
+e o código volta a fazer testes na posição anterior usando o valor desempilhado + 1
+como ponto de partida
 --}
 backtrack :: Timeline -> Maybe Matriz
 backtrack (Teste v pos mp ma s) = do
