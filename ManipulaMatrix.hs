@@ -11,6 +11,7 @@ insertList (l1, (a:b)) v = (l1 ++ v : b)
 swapList :: Lista -> Int -> Int -> Lista
 swapList l y v = insertList (splitAt y l) v
 
+--Insere uma Lista entre duas Matrizes
 insertMatrix :: (Matriz, Matriz) -> Int -> Int -> Matriz
 insertMatrix (m1, (a:b)) v y = (m1 ++ (swapList a y v) : b)
 

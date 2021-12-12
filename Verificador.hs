@@ -2,7 +2,7 @@ module Verificador (compMatrix,comparaArea, diagonal, linha, coluna, comparaRedo
 
 import ManipulaMatrix (Lista, Matriz)
 
---Tamanho da Matriz
+--Tamanho da Matriz (Já que é matriz quadrada, também da o tamanho das linhas)
 compMatrix :: Matriz -> Int
 compMatrix [] = 0
 compMatrix (_:b) = 1 + (compMatrix b)
@@ -46,5 +46,6 @@ coluna m x y v | (x == 0) = (v /= ((m!!(x + 1))!!y))
 comparaRedor :: Matriz -> Int -> Int -> Int -> Bool
 comparaRedor m x y v = ((linha m x y v && coluna m x y v) && diagonal m x y v)
 
+--Junta todos os testes nesse módulo em uma função
 verify :: Matriz -> Matriz -> Int -> (Int, Int) -> Bool
 verify mP mA v (x, y) = ((comparaRedor mP x y v) && (comparaArea mP mA 0 0 ((mA!!x)!!y) v))
