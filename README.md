@@ -1,4 +1,4 @@
-# Suguru Solver  <img align="right" src="https://cdn-icons.flaticon.com/png/512/3269/premium/3269927.png?token=exp=1639355434~hmac=77afccdb771d516fb92380cd4bb80512" width="125px"></h1>
+# Suguru Solver  <img align="right" src="https://cdn-icons-png.flaticon.com/512/5732/5732078.png" width="125px"></h1>
 <h3 align="center">Código desenvolvido em Haskell para realizar a solução de tabuleiros do jogo Suguru.</h3>
 
 
