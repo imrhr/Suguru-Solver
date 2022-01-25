@@ -5,7 +5,7 @@
 <div align="center">
   <img href="https://github.com/Covalsqy" target="_blank" src="https://img.shields.io/badge/Gabriel Bergmann-GitHub?color=262626&style=for-the-badge&logo=github&logoColor=white">
   <img href="https://github.com/larigr" target="_blank" src="https://img.shields.io/badge/Larissa Gremelmaier-GitHub?color=262626&style=for-the-badge&logo=github&logoColor=white">
-  <img href="https://github.com/imrhr" target="_blank" src="https://img.shields.io/badge/Roberto Rozário-GitHub?color=262626&style=for-the-badge&logo=github&logoColor=white">
+  <img href="https://github.com/robertorozario" target="_blank" src="https://img.shields.io/badge/Roberto Rozário-GitHub?color=262626&style=for-the-badge&logo=github&logoColor=white">
 </div>
 
 
